@@ -1,8 +1,18 @@
-import React from "react";
+import * as React from "react";
+import Map from "./components/Map/Map";
+import Marker from ".components/Marker/Marker";
+import * as ReactDom from "react-dom";
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import { createCustomEqual } from "fast-equals";
+import { isLatLngLiteral } from "@googlemaps/typescript-guards";
 import "./styles/App.css"; 
 
-const App: React.FC = () => {
+const render = (status: Status) => {
+  return <h1>{status}</h1>;
+};
 
+const App: React.FC = () => {
+  // App state
   const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
   const [zoom, setZoom] = React.useState(3); // initial zoom
   const [center, setCenter] = React.useState<google.maps.LatLngLiteral>({
@@ -70,19 +80,24 @@ const App: React.FC = () => {
 
   return (
     <>
-      <div id="map">
-        <Wrapper apiKey={"YOUR_API_KEY"}>
-          <Map center={center} zoom={zoom}>
-            <Marker position={position} />
-          </Map>
-        </Wrapper>
-
-        <p>Please enter an address</p>
-      </div>
-      <form>
-        <input type="text" id="address"></input>
-        <button type="submit">search address</button>
-      </form>
+      return (
+    <div style={{ display: "flex", height: "100%" }}>
+      <Wrapper apiKey={"YOUR_API_KEY"} render={render}>
+        <Map
+          center={center}
+          onClick={onClick}
+          onIdle={onIdle}
+          zoom={zoom}
+          style={{ flexGrow: "1", height: "100%" }}
+        >
+          {clicks.map((latLng, i) => (
+            <Marker key={i} position={latLng} />
+          ))}
+        </Map>
+      </Wrapper>
+      {/* Basic form for controlling center and zoom of map. */}
+      {form}
+    </div>
     </>
   );
 };
