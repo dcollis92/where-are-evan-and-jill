@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./styles/App.css"; 
 
 const App: React.FC = () => {
 
@@ -76,6 +76,7 @@ const App: React.FC = () => {
             <Marker position={position} />
           </Map>
         </Wrapper>
+
         <p>Please enter an address</p>
       </div>
       <form>
