@@ -1,5 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import React from "react";
 import { createCustomEqual } from "fast-equals";
 import { isLatLngLiteral } from "@googlemaps/typescript-guards";
 
