@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FC, useState } from "react"
 import Map from "./components/Map/Map";
 import Marker from "./components/Marker/Marker";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
@@ -8,11 +9,11 @@ const render = (status: Status) => {
   return <h1>{status}</h1>;
 };
 
-const App: React.FC = () => {
+const App: FC = () => {
   // App state
-  const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
-  const [zoom, setZoom] = React.useState(3); // initial zoom
-  const [center, setCenter] = React.useState<google.maps.LatLngLiteral>({
+  const [clicks, setClicks] = useState<google.maps.LatLng[]>([]);
+  const [zoom, setZoom] = useState(3); // initial zoom
+  const [center, setCenter] = useState<google.maps.LatLngLiteral>({
     lat: 0,
     lng: 0,
   });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, useRef, useState, useEffect, Children, isValidElement, cloneElement, EffectCallback, ReactNode } from "react";
 import { createCustomEqual } from "fast-equals";
 import { isLatLngLiteral } from "@googlemaps/typescript-guards";
 
@@ -6,10 +6,10 @@ interface MapProps extends google.maps.MapOptions {
   style: { [key: string]: string };
   onClick?: (e: google.maps.MapMouseEvent) => void;
   onIdle?: (map: google.maps.Map) => void;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
-const Map: React.FC<MapProps> = ({
+const Map: FC<MapProps> = ({
   onClick,
   onIdle,
   children,
@@ -17,11 +17,10 @@ const Map: React.FC<MapProps> = ({
   ...options
 }) => {
   // Map Hooks
-  const ref = React.useRef<HTMLDivElement>(null);
-  const [map, setMap] = React.useState<google.maps.Map>();
+  const ref = useRef<HTMLDivElement>(null);
+  const [map, setMap] = useState<google.maps.Map>();
 
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (ref.current && !map) {
       setMap(new window.google.maps.Map(ref.current, {}));
     }
@@ -33,7 +32,7 @@ const Map: React.FC<MapProps> = ({
     }
   }, [map, options]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (map) {
       ["click", "idle"].forEach((eventName) =>
         google.maps.event.clearListeners(map, eventName)
@@ -52,10 +51,10 @@ const Map: React.FC<MapProps> = ({
   return (
     <>
       <div ref={ref} style={style} />
-      {React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
+      {Children.map(children, (child) => {
+        if (isValidElement(child)) {
           // set the map prop on the child component
-          return React.cloneElement(child, { map });
+          return cloneElement(child, { map });
         }
       })}
     </>
@@ -80,7 +79,7 @@ const deepCompareEqualsForMaps = createCustomEqual(
 );
 
 function useDeepCompareMemoize(value: any) {
-  const ref = React.useRef();
+  const ref = useRef();
 
   if (!deepCompareEqualsForMaps(value, ref.current)) {
     ref.current = value;
@@ -90,10 +89,10 @@ function useDeepCompareMemoize(value: any) {
 }
 
 function useDeepCompareEffectForMaps(
-  callback: React.EffectCallback,
+  callback: EffectCallback,
   dependencies: any[]
 ) {
-  React.useEffect(callback, dependencies.map(useDeepCompareMemoize));
+  useEffect(callback, dependencies.map(useDeepCompareMemoize));
 }
 
 
