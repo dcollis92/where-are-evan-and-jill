@@ -1,5 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import React from "react";
 
 const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
   const [marker, setMarker] = React.useState<google.maps.Marker>();
