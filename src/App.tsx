@@ -1,10 +1,8 @@
 import * as React from "react";
-import Map from "./components/Map/Map";
-import Marker from ".components/Marker/Marker";
 import * as ReactDom from "react-dom";
+import Map from "./components/Map/Map";
+import Marker from "./components/Marker/Marker";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import { createCustomEqual } from "fast-equals";
-import { isLatLngLiteral } from "@googlemaps/typescript-guards";
 import "./styles/App.css"; 
 
 const render = (status: Status) => {

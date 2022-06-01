@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import { useDeepCompareEffectForMaps } from "./hooks/DeepCompare/DeepCompare"
 
 interface MapProps extends google.maps.MapOptions {
   style: { [key: string]: string };
