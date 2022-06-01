@@ -1,4 +1,4 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.scss";
 import App from "./App";
@@ -8,9 +8,9 @@ const root = ReactDOM.createRoot(
 );
 window.addEventListener("DOMContentLoaded", () => {
   root.render(
-    <React.StrictMode>
+    <StrictMode>
       <App />
-    </React.StrictMode>
+    </StrictMode>
   );
 });
 
