@@ -96,8 +96,6 @@ function useDeepCompareEffectForMaps(
   React.useEffect(callback, dependencies.map(useDeepCompareMemoize));
 }
 
-// window.addEventListener("DOMContentLoaded", () => {
-//   ReactDom.render(<App />, document.getElementById("root"));
-// });
 
 export default Map;
+
