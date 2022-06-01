@@ -25,3 +25,5 @@ const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
 
   return null;
 };
+
+export default Marker;
