@@ -1,4 +1,14 @@
-import React, { FC, useRef, useState, useEffect, Children, isValidElement, cloneElement, EffectCallback, ReactNode } from "react";
+import {
+  FC,
+  useRef,
+  useState,
+  useEffect,
+  Children,
+  isValidElement,
+  cloneElement,
+  EffectCallback,
+  ReactNode,
+} from "react";
 import { createCustomEqual } from "fast-equals";
 import { isLatLngLiteral } from "@googlemaps/typescript-guards";
 
@@ -96,6 +106,4 @@ function useDeepCompareEffectForMaps(
   useEffect(callback, dependencies.map(useDeepCompareMemoize));
 }
 
-
 export default Map;
-
